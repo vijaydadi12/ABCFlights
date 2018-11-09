@@ -113,5 +113,5 @@
   },
   "host" : "virtserver.swaggerhub.com",
   "basePath" : "/vijaydadi/FlightsInfo/1.0.0",
-  "schemes" : [ "https", "http" ]
+  "schemes" : [ "http" ]
 }
