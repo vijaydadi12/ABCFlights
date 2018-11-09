@@ -81,7 +81,7 @@
   "definitions" : {
     "FlightDetails" : {
       "type" : "object",
-      "required" : [ "id", "seats", "route", "operatingarea", "manufactuer" ],
+      "required" : [ "id", "seats", "route", "operatingarea", "manufacturer" ],
       "properties" : {
         "id" : {
           "type" : "string",
@@ -108,6 +108,6 @@
     }
   },
   "host" : "virtserver.swaggerhub.com",
-  "schemes" : [ "https", "http" ],
-  "basePath" : "/PurchaseOrderTest/PurchaseOrder/1.0.0"
+  "schemes" : [ "http" ],
+  "basePath" : "/ABCFlightsInfo/flights/1.0.0"
 }
