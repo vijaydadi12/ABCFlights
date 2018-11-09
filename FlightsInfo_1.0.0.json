@@ -1,0 +1,117 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a Flight Details API",
+    "version" : "1.0.0",
+    "title" : "Flight Details API",
+    "contact" : {
+      "email" : "vidadi@tibco.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/Flights" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "searches flights",
+        "operationId" : "searchFlights",
+        "description" : "By passing in the appropriate options, you can search for flights\n",
+        "produces" : [ "application/xml" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "flightId",
+          "description" : "pass an optional search string for looking up flight details",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/FlightData"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "adds a FLIGHT",
+        "operationId" : "addFlight",
+        "description" : "Adds an flight to the system",
+        "consumes" : [ "application/xml" ],
+        "produces" : [ "application/xml" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "FlightData",
+          "description" : "flight to add",
+          "schema" : {
+            "$ref" : "#/definitions/FlightData"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "item created"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "FlightData" : {
+      "type" : "object",
+      "required" : [ "id", "FlightNum", "Seats", "OperatingArea", "manufacturer", "Route" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "d290f1ee-6c54"
+        },
+        "FlightNum" : {
+          "type" : "string",
+          "example" : "ABC1234"
+        },
+        "Seats" : {
+          "type" : "string",
+          "example" : "Widget Adapter"
+        },
+        "OperatingArea" : {
+          "type" : "string",
+          "example" : "Domestic"
+        },
+        "manufacturer" : {
+          "type" : "string",
+          "example" : "Boeing"
+        },
+        "Route" : {
+          "type" : "string",
+          "example" : "SANFRANCISCO-CHICAGO"
+        }
+      }
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/vijaydadi/FlightsInfo/1.0.0",
+  "schemes" : [ "https", "http" ]
+}
